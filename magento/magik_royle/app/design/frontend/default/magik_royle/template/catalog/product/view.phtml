@@ -1,0 +1,221 @@
+<?php
+/**
+ * Product view template
+ *
+ * @see Mage_Catalog_Block_Product_View
+ * @see Mage_Review_Block_Product_View
+ */
+?>
+<?php $_helper = $this->helper('catalog/output'); ?>
+<?php $_product = $this->getProduct(); ?>
+<script type="text/javascript">
+    var optionsPrice = new Product.OptionsPrice(<?php echo $this->getJsonConfig() ?>);
+</script>
+<div id="messages_product_view"><?php echo $this->getMessagesBlock()->getGroupedHtml() ?></div>
+
+<div class="new_product">
+        <div class="product-name">
+		<h1 class="product-name"><?php echo $_helper->productAttribute($_product, $_product->getName(), 'name') ?></h1>
+	</div>
+	
+<div class="product-view">
+    <div class="product-essential">
+        <div class="product-img-box">
+            <?php echo $this->getChildHtml('media') ?>
+        </div>
+        
+        <div class="product-shop">
+        
+        <form action="<?php echo $this->getSubmitUrl($_product) ?>" method="post" id="product_addtocart_form"<?php if($_product->getOptions()): ?> enctype="multipart/form-data"<?php endif; ?>>
+        <div class="no-display">
+            <input type="hidden" name="product" value="<?php echo $_product->getId() ?>" />
+            <input type="hidden" name="related_product" id="related-products-field" value="" />
+        </div>
+
+        
+       
+		
+            <?php echo $this->getChildHtml('product_type_data') ?>
+            
+            <?php echo $this->getChildHtml('alert_urls') ?>
+
+	    <?php if ($this->canEmailToFriend()): ?>
+                <div class="first_review"><p class="review"><a href="<?php echo $this->helper('catalog/product')->getEmailToFriendUrl($_product) ?>"><?php echo $this->__('« Email to a Friend') ?></a></p></div>
+            <?php endif; ?>
+            
+            <?php echo $this->getReviewsSummaryHtml($_product, false, true)?>
+            
+          
+            <?php echo $this->getTierPriceHtml() ?>
+            <?php echo $this->getChildHtml('extrahint') ?>
+	    <?php echo $this->getPriceHtml($_product) ?>
+	    
+            <div style="clear: both;">&nbsp;</div>
+            <?php if ($_product->getShortDescription()):?>
+                <div class="short-description">
+                    <h3><?php echo $this->__('Quick Overview') ?></h3>
+                    <div class="std"><?php echo $_helper->productAttribute($_product, nl2br($_product->getShortDescription()), 'short_description') ?></div>
+                </div>
+            <?php endif;?>
+            
+            <?php if (!$this->hasOptions()):?>
+                <!--div class="add-to-box"-->
+                    <?php if($_product->isSaleable()): ?>
+                        <fieldset class="add-to-cart"> <?php echo $this->getChildHtml('addtocart') ?> </fieldset>
+                        <?php if( $this->helper('wishlist')->isAllow() || $_compareUrl=$this->helper('catalog/product_compare')->getAddUrl($_product)): ?>
+                            <!--span class="or"><?php echo $this->__('OR') ?></span-->
+                        <?php endif; ?>
+                    <?php endif; ?>
+                    <div class="add_to_cart"><?php echo $this->getChildHtml('addto') ?></div>
+                <!--/div-->
+                <?php echo $this->getChildHtml('extra_buttons') ?>
+            <?php endif; ?>
+
+
+            <?php echo $this->getChildHtml('other');?>
+
+            <?php if ($_product->isSaleable() && $this->hasOptions()):?>
+                <?php echo $this->getChildChildHtml('container1', '', true, true) ?>
+            <?php endif;?>
+
+       
+
+       
+
+        <div class="clearer"></div>
+        <?php if ($_product->isSaleable() && $this->hasOptions()):?>
+            <?php echo $this->getChildChildHtml('container2', '', true, true) ?>
+        <?php endif;?>
+    </form> 
+    
+  <?php /*  <div class="product-collateral">
+      <?php foreach ($this->getChildGroup('detailed_info', 'getChildHtml') as $alias => $html):?>
+        <div style="overflow:hidden;" class="box-collateral <?php echo "box-{$alias}"?>">
+            <?php if ($title = $this->getChildData($alias, 'title')):?>
+            <h3><?php echo $this->escapeHtml($title); ?></h3>
+            <?php endif;?>
+            <?php echo $html; ?>
+        </div>
+      <?php endforeach;?>
+        <?php echo $this->getChildHtml('upsell_products') ?>
+        <?php echo $this->getChildHtml('product_additional_data') ?>
+    </div> <!--product-collateral--> */ ?>
+    
+
+
+    
+    </div> <!--product-shop-->
+    
+    <script type="text/javascript">
+    //<![CDATA[
+        var productAddToCartForm = new VarienForm('product_addtocart_form');
+        productAddToCartForm.submit = function(button, url) {
+            if (this.validator.validate()) {
+                var form = this.form;
+                var oldUrl = form.action;
+
+                if (url) {
+                   form.action = url;
+                }
+                var e = null;
+                try {
+                    this.form.submit();
+                } catch (e) {
+                }
+                this.form.action = oldUrl;
+                if (e) {
+                    throw e;
+                }
+
+                if (button && button != 'undefined') {
+                    button.disabled = true;
+                }
+            }
+        }.bind(productAddToCartForm);
+
+        productAddToCartForm.submitLight = function(button, url){
+            if(this.validator) {
+                var nv = Validation.methods;
+                delete Validation.methods['required-entry'];
+                delete Validation.methods['validate-one-required'];
+                delete Validation.methods['validate-one-required-by-name'];
+                if (this.validator.validate()) {
+                    if (url) {
+                        this.form.action = url;
+                    }
+                    this.form.submit();
+                }
+                Object.extend(Validation.methods, nv);
+            }
+        }.bind(productAddToCartForm);
+    //]]>
+    </script>
+    </div> <!--product-essential-->
+    
+         <div class="product-collateral">
+    <div id="product-tabs" class="corner-left-top">
+   <div class="tabs" id="product-tabs">
+            <div class="corner-left-top " id="width-tab">
+              <div class="corner-right-top">
+                <div onclick="move_to(0, this)" class="border-top">
+                  <h3>Product Description</h3>
+                </div>
+              </div>
+            </div>
+            <div class="corner-left-top" id="width-tab-3">
+              <div class="corner-right-top">
+                <div onclick="move_to(1, this)" class="border-top">
+                  <h3>We Also Recommend</h3>
+                </div>
+              </div>
+            </div>
+            <div class="corner-left-top" id="width-tab-4">
+              <div class="corner-right-top">
+                <div onclick="move_to(2, this)" class="border-top">
+                  <h3>Product Tags</h3>
+                </div>
+              </div>
+            </div>
+            
+            <!--br class="clear-block"/-->
+   </div>   <!--tabs-->
+        <script type="text/javascript">
+			var current = 0;
+			$('tabs').firstDescendant().className += ' active-tab';
+			var active_tab = $('tabs').firstDescendant().firstDescendant().firstDescendant();
+			var motion = false;
+			function move_to(to, el){    
+			   if (!motion) {
+				el.parentNode.parentNode.className += ' active-tab';
+				if (active_tab) {
+				active_tab.parentNode.parentNode.className = 'corner-left-top';
+				}
+				active_tab = el;    
+				move = (current - to)*705;
+				new Effect.Move($('tabber'), { x: move, beforeStart:function(){ motion = true;},afterFinish:function(){motion = false;}});
+				current = to;
+			   }
+			}		
+		</script>
+	<div class="tabs-content">
+            <div class="block-width">
+              <ul id="tabber" style="position: relative; left: 0px; top: 0px;">
+		<?php $_description = $this->getChildHtml('description')?>
+                    <li class="tabs-list" id="container_1">
+                     <?php echo $_description; ?>
+                    </li>
+                <?php //endif;?>
+                <li class="tabs-list" id="container_3">
+                <?php echo $this->getChildHtml('upsell_products') ?>
+                </li>
+                <li class="tabs-list" id="container_4">
+                <?php echo $this->getChildHtml('product_additional_data') ?>
+                </li> 
+             </ul>
+     	</div>   <!--block-width-->      
+      </div> <!--tabs-content-->
+   </div>  <!--product-tabs-->         
+</div> <!--product-collateral-->
+    
+</div> <!--product-view-->
+</div> <!--new_product-->   
