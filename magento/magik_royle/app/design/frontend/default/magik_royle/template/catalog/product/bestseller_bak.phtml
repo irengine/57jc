@@ -1,0 +1,86 @@
+<?php
+ $catNum = $this->getData('category_id');
+ $n = $this->getData('num_products');
+$category = Mage::getModel('catalog/category')->load($catNum);
+$storeId    = Mage::app()->getStore()->getId();	
+        $products = Mage::getResourceModel('reports/product_collection')
+            ->addOrderedQty()
+            ->addAttributeToSelect('*')
+            ->addAttributeToSelect(array('name', 'price', 'small_image')) //edit to suit tastes
+            ->setStoreId($storeId)
+            ->addStoreFilter($storeId)
+            ->setOrder('ordered_qty', 'desc')//best sellers on top
+	    ->addCategoryFilter($category);
+ 
+        $products ->setPageSize($n);
+        Mage::getSingleton('catalog/product_status')->addVisibleFilterToCollection($products);
+        Mage::getSingleton('catalog/product_visibility')->addVisibleInCatalogFilterToCollection($products);
+
+        //$products->setPageSize(4)->setCurPage(1);
+
+        $this->setProductCollection($products);
+
+?>
+<div class="page-title">
+    <h1><?php echo $this->__('Best Selling Products') ?></h1>
+</div>
+<div class="category-products">
+<?php if (($_products = $this->getProductCollection()) && $_products->getSize()): ?>
+<?php  $_collectionSize = count($_products->getItems()) ?>
+<table class="products-grid">
+<?php $i=1; foreach ($_products->getItems() as $_product): //echo "<pre>"; print_r($_product); ?>
+    <?php if ($i%1!==0): ?>
+    <tr>
+    <?php endif ?>
+        <td id="prd" class="item <?php if($i%4==0 or $i==$_collectionSize){echo 'last';} ?>" >
+
+           <div class="grid_prod">
+	    <div class="prod_image">
+            <a class="product-image" href="<?php echo $_product->getProductUrl() ?>" title="<?php echo $this->htmlEscape($this->getImageLabel($_product, 'small_image')) ?>">
+                <img src="<?php echo $this->helper('catalog/image')->init($_product, 'small_image')->resize(135); ?>" width="135" height="135" alt="<?php echo $this->htmlEscape($this->getImageLabel($_product, 'small_image')) ?>" title="<?php echo $this->htmlEscape($this->getImageLabel($_product, 'small_image')) ?>" />
+            </a>
+	    </div>
+
+       <div class=prod_image_detail"><div class="new_product-name">
+		<?php $pname =  $this->htmlEscape($_product->getName());
+		if(strlen($pname) > 25)
+		{
+		 ?>
+                <h3 class="product-name"><a href="<?php echo $_product->getProductUrl() ?>" title="<?php echo $this->htmlEscape($_product->getName()) ?>"><?php echo substr($pname,0,22).'...'; ?></a></h3>
+		<?php } 
+		else {
+		?>
+ <h3 class="product-name"><a href="<?php echo $_product->getProductUrl() ?>" title="<?php echo $this->htmlEscape($_product->getName()) ?>"><?php echo $pname ?></a></h3>
+		<?php } ?>
+         </div>
+
+   <div class="new_prod_price">
+       <?php echo $this->getPriceHtml($_product, true) ?>
+   </div>
+	 <div class="new_prod_btn">
+                    <?php if($_product->isSaleable()): ?>
+                        <button type="button" title="<?php echo $this->__('Add to Cart') ?>" class="button" onclick="setLocation('<?php echo $this->getAddToCartUrl($_product) ?>')"><span><?php echo $this->__('Add to Cart') ?></span></button>
+                    <?php else: ?>
+                        <p class="availability out-of-stock"><span><?php echo $this->__('Out of stock') ?></span></p>
+                    <?php endif; ?></div>
+                    <!--div class="add-to-links">
+                        <?php if ($this->helper('wishlist')->isAllow()) : ?>
+                            <p><a href="<?php echo $this->getAddToWishlistUrl($_product) ?>" class="link-wishlist"><?php echo $this->__('Add to Wishlist') ?></a></p>
+                        <?php endif; ?>
+                        <?php if ($_compareUrl = $this->getAddToCompareUrl($_product)): ?>
+                            <p><span class="separator">|</span> <a href="<?php echo $_compareUrl ?>" class="link-compare"><?php echo $this->__('Add to Compare') ?></a></p>
+                        <?php endif; ?>
+                    </div-->
+                
+</div>
+
+
+     </div>
+    </td>
+    <?php if ($i%4==0 or $i==$_collectionSize): ?>
+   </tr>
+    <?php endif ?>
+  <?php $i++; endforeach; $kol = $_collectionSize; ?>
+</table>
+<?php endif; ?>
+</div>

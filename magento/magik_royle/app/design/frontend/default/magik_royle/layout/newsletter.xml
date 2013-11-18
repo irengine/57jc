@@ -9,7 +9,7 @@ Default layout, loads most of the pages
 
         <!-- Mage_Newsletter -->
         <reference name="left">
-            <block type="newsletter/subscribe" name="left.newsletter" template="newsletter/subscribe.phtml" after="catalog.compare.sidebar"/>
+           <!-- <block type="newsletter/subscribe" name="left.newsletter" template="newsletter/subscribe.phtml" after="catalog.compare.sidebar"/>-->
         </reference>
 
     </default>

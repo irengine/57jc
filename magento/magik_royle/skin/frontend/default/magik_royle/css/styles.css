@@ -422,7 +422,7 @@ margin-right:0px; margin-bottom:45px;
 }
 
 .prod_image { padding: 5px 5px 2px; border:1px #e1e1e1 solid;}
-.prod_image_detail { padding-right:12px;}
+.prod_image_detail { /*padding-right:12px;*/ padding:0 3px;}
 .new_prod-1{
 background-color:#ffffff;
 text-align:center; border-right: 0px solid #E2E2E2; 
@@ -654,7 +654,7 @@ margin-right:10px;
 
 .checkout {text-align:right; margin-left:30px; height:20px; padding-top:5px; color:#D35232;}
 .checkout a:hover { text-align:right; height:20px; color:#D35232;}
-
+.checkout li{width:100%; height:auto; float:left;}
 
 /* Page Heading */
 .email{
@@ -933,7 +933,7 @@ dd.even { background-color:#f6f6f6; }
 .std em { font-style:italic; }
 .std  p{  padding-top:5px; line-height:1.4em; }
 .std  ul{ padding-left:0px; padding-top:5px; } 
-.std  ul li { list-style-image: url(../images/bullet_1.png); margin-left:1.5em;  margin-top: 2px; }
+.std  ul li { list-style-image: url(../images/bullet_1.png);  margin-top: 2px; list-style: none outside none;}
 .std  ol{padding-top:5px;} 
 .std  ol li { list-style:decimal; margin-top: 2px;  }
 .std  a{text-decoration:none; line-height:17px; }
@@ -2186,7 +2186,7 @@ text-decoration:underline;
 line-height:20px
 }
 
-.copyright{color: #555555;font-size: 12px;margin-bottom: 0;margin-top: 5px;overflow: hidden;text-align: left;}
+.copyright{color: #555555;font-size: 12px;margin-bottom: 0;margin-top: 5px;overflow: hidden;text-align: left; padding:30px 0;}
 .copyright a{font-size:12px; color:#413215; margin-top:5px; text-align:left; margin-bottom:15px;}
 .copyright a:hover{font-size:12px; color:#413215; margin-top:5px; text-align:left; margin-bottom:15px;}
 .footer-bottom {font-size:12px; color:#ccc; float:right; padding-left:10px; margin-top:5px}
@@ -2275,7 +2275,10 @@ padding:0 0 1px;
 
 
 .sidebarmenu{ background-color:#f8f8f8;text-align:left; padding-left:10px; padding-top:5px; padding-bottom:5px; color:#333; border:0px #74794D solid; border-top:none; font-size:11px; }
-.new_prod_btn { margin-bottom:5px; margin-top:5px; cursor: pointer; text-align:left}
+.new_prod_btn { margin-bottom:5px; margin-top:5px; cursor: pointer; text-align:left;}
+.new_prod_btn .pbutton{ background: url("../images/btn_bg2.png") repeat-x scroll left top rgba(0, 0, 0, 0); border: medium none; cursor: pointer; font-size: 12px !important; overflow: visible; padding: 6px 6px; width: auto; display:block; float:right;}
+.new_prod_btn .pbutton a{color: #FFFFFF;display: block;font-family: Arial,Helvetica,sans-serif;font-size: 12px;
+font-weight: bold; line-height: 15px; margin: 0; padding: 0; text-align: center; text-decoration: none; white-space: nowrap;}
 .grid_prod_btn { margin-bottom:6px; margin-top:6px; cursor: pointer; text-align:left}
 
 /* Bottom Bar ======================================================================================= */

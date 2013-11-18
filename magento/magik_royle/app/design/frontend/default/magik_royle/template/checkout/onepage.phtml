@@ -13,7 +13,8 @@
         <div class="step-title">
             <span class="number"><?php echo $i ?></span>
              <h3 class="one_page_heading"><?php echo $_stepInfo['label'] ?></h3>
-            <a style="display:none;" href="#"><?php echo $this->__('Edit') ?></a>
+           <!-- <a style="display:none;" href="#"><?php echo $this->__('Edit') ?></a>-->
+            <a style="float:right; margin-right:5px; padding-top:7px;" href="#"><?php echo $this->__('Edit') ?></a>
         </div>
         <div id="checkout-step-<?php echo $_stepId ?>" class="step a-item" style="display:none;">
             <?php echo $this->getChildHtml($_stepId) ?>

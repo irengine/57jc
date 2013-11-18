@@ -11,7 +11,7 @@
 <body class="page-print<?php echo $this->getBodyClass()?$this->getBodyClass():'' ?>">
 <div>
     <div class="print-head">
-        <img src="<?php echo $this->getPrintLogoUrl() ? $this->getPrintLogoUrl() : $this->getSkinUrl('images/logo.png') ?>" class="logo" alt="" />
+        <img src="<?php echo $this->getPrintLogoUrl() ? $this->getPrintLogoUrl() : $this->getSkinUrl('images/logo.jpg') ?>" class="logo" alt="" />
         <?php if ($this->getPrintLogoText()):?>
             <address><?php echo nl2br($this->htmlEscape($this->getPrintLogoText())) ?></address>
         <?php endif;?>
