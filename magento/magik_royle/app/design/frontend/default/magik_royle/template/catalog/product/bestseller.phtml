@@ -9,7 +9,7 @@ $products = Mage::getResourceModel('reports/product_collection')
 			->addAttributeToSelect(array('name', 'price', 'small_image')) //edit to suit tastes
 			->setStoreId($storeId)
 			->addStoreFilter($storeId)
-			->setOrder('product_id', 'asc')//->setOrder('ordered_qty', 'desc')//best sellers on top 
+			->setOrder('ordered_qty', 'desc')//->setOrder('ordered_qty', 'desc')//best sellers on top 
 			->addCategoryFilter($category);
  
 $products ->setPageSize($n);
