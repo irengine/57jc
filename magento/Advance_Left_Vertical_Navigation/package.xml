@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<package>
+    <name>Advance_Left_Vertical_Navigation</name>
+    <version>1.0.0.2</version>
+    <stability>stable</stability>
+    <license>http://opensource.org/licenses/osl-3.0.php</license>
+    <channel>community</channel>
+    <extends/>
+    <summary>Mtoo Advance Left Vertical Menu Navigation with nice css design like ebay </summary>
+    <description>Mtoo Advance Left Vertical Menu Navigation with nice css design like ebay </description>
+    <notes>1. without any Admin-Configuration easy use and Easy 1-minute installation; &#xD;
+2. Define which Levels should be shown on store front .; &#xD;
+3.Compatible with any Browser..test in ie6,7,8 firefox ,google chrome ,Opera ...; &#xD;
+4.Self-appropriate left width,without any code change ; &#xD;
+5.Compatible with magento 1.3.*,1.4.*,1.5.*,1.6.*,1.7.* &#xD;
+6.Predefined top level Category Static Html at the backend &#xD;
+Other extension features: &#xD;
+* PE compatibility &#xD;
+* Easy 1-minute installation &#xD;
+* 100% open source &#xD;
+* Meets Magento programming practices for most versions and customizations compatibility &#xD;
+* Free upgrades at least in current version branch </notes>
+    <authors><author><name>Mtoo.inc</name><user>sjgoodjob</user><email>sjgoodjob@gmail.com</email></author></authors>
+    <date>2012-10-18</date>
+    <time>10:30:08</time>
+    <contents><target name="magecommunity"><dir name="Mtoo"><dir name="Navigation"><dir name="Block"><file name="Navigation.php" hash="f4c35681540d6de6a5e6895d8258ad7b"/></dir><dir name="etc"><file name="config.xml" hash="bd7ae2e47c2388c88f3e1500308da2bd"/></dir><dir name="sql"><dir name="navigation_setup"><file name="mysql4-install-0.1.0.php" hash="2283b2ed578f6f926d743be0448afc5b"/><file name="mysql4-upgrade-0.1.0-1.0.0.php" hash="cf8b1f0eb7e1a91e4ffbaedbc1e08eba"/></dir></dir></dir></dir></target><target name="mageetc"><dir name="modules"><file name="Mtoo_Navigation.xml" hash="df5bbcf26b71af86d7eadde8438651d5"/></dir></target><target name="magedesign"><dir name="frontend"><dir name="default"><dir name="default"><dir name="template"><dir name="navigation"><file name="left.phtml" hash="ab8a1bb3c40a6b3d70275b0a952f282e"/></dir></dir><dir name="layout"><file name="navigation.xml" hash="e9fdf166eca435d5fc748d4a6706117f"/></dir></dir></dir></dir></target><target name="mageskin"><dir name="frontend"><dir name="default"><dir name="default"><dir name="navigation"><dir name="css"><file name="nav.css" hash="698851132e242bcdea0348d577fefe5e"/></dir><dir name="images"><dir name="common"><file name="Thumbs.db" hash="6576e2015d4a3e78f00efeb8449dbf2d"/><file name="categories_botbg.gif" hash="b91cc0b8e945f091f3a64c5d672494fd"/><file name="categories_fbg.gif" hash="ceeb792357aefe544eeefc2ea480c812"/><file name="categories_ico.gif" hash="f02b203cc4db562ec25e47839e4de8fa"/><file name="footer_ico.gif" hash="67c74f0b116501e6613d3b65b64f1333"/><file name="ico.png" hash="f9fc16bacc45a08708d6d1f73ce35931"/><file name="litem_ico.jpg" hash="e0b023c432c512d7ba06b6990217fc86"/><file name="menu_arrow_bg.gif" hash="8a5a8b2ab1a6668ab8a90681e8865ca7"/><file name="menu_ico.gif" hash="1b4285bfb1cac246eb1125e4595dc48f"/><file name="silder_menu_bg.jpg" hash="71ac2816fd781bb139beab6ac30f076e"/></dir></dir></dir></dir></dir></dir></target></contents>
+    <compatible/>
+    <dependencies><required><php><min>5.1.0</min><max>6.0.0</max></php></required></dependencies>
+</package>
