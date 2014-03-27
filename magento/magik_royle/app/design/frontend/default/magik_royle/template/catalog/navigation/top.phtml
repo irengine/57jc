@@ -6,12 +6,8 @@
  * string If specified wraps children list in div with this class
  */
 ?>
-<?php $_menu = $this->renderCategoriesMenuHtml(0,'level-top') ?>
-<?php if($_menu): ?>
 <!--div class="nav-container"><div class="header_inner1"-->
     <ul id="nav">
-		<li><a href="<?php echo $this->getUrl('') ?>">主页</a></li>
-        <?php echo $_menu ?>
+		<li><a href="<?php echo $this->getUrl('') ?>">首页</a></li>
     </ul>
 <!--/div></div-->
-<?php endif ?>
