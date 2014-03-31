@@ -9,5 +9,7 @@
 <!--div class="nav-container"><div class="header_inner1"-->
     <ul id="nav">
 		<li><a href="<?php echo $this->getUrl('') ?>">首页</a></li>
+        <li><a href="<?php echo Mage::getModel("catalog/category")->load(45)->getUrl() ?>">畅销</a></li>
+        <li><a href="<?php echo Mage::getModel("catalog/category")->load(46)->getUrl() ?>">促销</a></li>
     </ul>
 <!--/div></div-->
